@@ -12,7 +12,7 @@ RUN npm run build
 
 # In this new container, I choose the nginx for serving the webapp
 FROM nginx:latest
-
+EXPOSE 80
 # And copy the builded app files from the previous container to the new container
 # /app/build -> where the previous build was done
 # /usr/share/nginx/html -> where I want to put it in the new container
