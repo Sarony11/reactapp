@@ -15,3 +15,17 @@ before_install:
 script:
 # We want to run the container and run the npm test. -- --coverage allows return a boolean 0, to let TravisCI knows the command runned successfully.
   -  docker run -e CI=true sarony11/travisreactapp npm run test
+
+# This is going to deploy the container in AWS Elastic
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "docker-learning-env"
+  env: "DockerLearningEnv-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-359418020177"
+  bucket_path: "docker-learning-env" #video99
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_PRIVATE_KEY"
